@@ -6,6 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
     selector:'app-header',
     templateUrl:'./header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy{
 
@@ -23,15 +24,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
         if (this.authSubscription) {
             this.authSubscription.unsubscribe();
         }
-    }
-    onSaveData(){
-        this.dataStorageService.storeRecipes();
-    }
-
-    onFetchData(){
-        this.dataStorageService.fetchRecipes().subscribe();
-    }
-    
+    }    
     logOut(){
         this.authService.logOut();
     }

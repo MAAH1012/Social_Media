@@ -22,6 +22,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DisplayComponent } from './display/display.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { PostFormComponent } from './posts/post-form/post-form.component';
+import { PostService } from './posts/posts.service';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import { ContestCreateComponent } from './contest/contest-create/contest-create.component';
+import { ContestListComponent } from './contest/contest-list/contest-list.component';
+import { ContestPostCreateComponent } from './contest/contest-post/contest-post-create/contest-post-create.component';
+import { ContestPostListComponent } from './contest/contest-post/contest-post-list/contest-post-list.component';
+import { ContestEditComponent } from './contest/contest-edit/contest-edit.component';
+import { ContestPostEditComponent } from './contest/contest-post/contest-post-edit/contest-post-edit.component';
+import { ContestDisplayComponent } from './contest-display/contest-display.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +51,19 @@ import { AlertComponent } from './shared/alert/alert.component';
     RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    DashboardComponent,
+    DisplayComponent,
+    PostListComponent,
+    PostFormComponent,
+    PostEditComponent,
+    ContestCreateComponent,
+    ContestListComponent,
+    ContestPostCreateComponent,
+    ContestPostListComponent,
+    ContestEditComponent,
+    ContestPostEditComponent,
+    ContestDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +72,7 @@ import { AlertComponent } from './shared/alert/alert.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

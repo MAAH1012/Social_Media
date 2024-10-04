@@ -1,0 +1,35 @@
+<div class="bodyy">
+  <div class="slider">
+    <div class="list">
+      <div class="item active">
+        <img [src]="contestPost.photoUrl" alt="celebrations">
+        <div class="content">
+          <h2># {{selectedContest.tag}}</h2>
+          <p>This is why because sky is so high. I don't know why</p>
+          <div class="media-content">
+            <span class="post-likes">
+              <img [src]="selectedSymbol" alt="Likes" class="heart-icon" />
+              <strong>{{ contestPost.likes }} {{iconString}}</strong>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="thumbnail">
+      <div class="item active">
+        <img [src]="contestPost.photoUrl" alt="celebrations">
+      </div>
+    </div>
+    <!-- Dropdown button for contest selection -->
+    <div class="dropdown">
+      <button class="dropdown-toggle" (click)="toggleDropdown()">
+        Contests
+      </button>
+      <div class="dropdown-menu" [class.show]="isDropdownOpen">
+        <a *ngFor="let contest of contestslist" (click)="selectContest(contest)" class="dropdown-item">
+          {{ contest.tag }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="post-display-container" [ngClass]="selectedPlatform">
+    <div *ngIf="selectedIcon === 'assets/instagram.svg'" class="insta">
+      <div class="insta-inner"></div>
+    </div>
+    <div *ngIf="selectedIcon === 'assets/whatsapp.svg'" class="whats">
+      <img src="assets/wiki.svg" alt="whatsapp">
+    </div>
+    <div *ngIf="selectedIcon === 'assets/snapchat.svg'" class="snap">
+      <img src="assets/snapchat-logo.svg" alt="snapchat">
+    </div>
+    <div *ngIf="selectedIcon === 'assets/twitter.svg'" class="twitter">
+      <img src="assets/twitter2.svg" alt="twitter">
+    </div>
+</div>
+<div class="post-display" *ngIf="topPost">
+  <div class="post-header">
+    <p class="post-id">{{ topPost.mediaId }}</p>
+
+    <!-- Icon Selector for Social Media -->
+    <div class="icon-selector-container" appDropdown>
+      <!-- Show the selected icon or a default button -->
+      <button class="icon-selector-button">
+        <img *ngIf="selectedIcon" [src]="selectedIcon" alt="Selected Icon" />
+        <span *ngIf="!selectedIcon">☰</span>
+      </button>
+
+      <!-- Dropdown Menu with Social Media Icons -->
+      <div class="icon-dropdown-menu">
+        <div class="social-icon" (click)="selectIcon('Whatsapp')">
+          <img src="assets/whatsapp.svg" alt="WhatsApp" />
+        </div>
+        <div class="social-icon" (click)="selectIcon('Instagram')">
+          <img src="assets/instagram.svg" alt="Instagram" />
+        </div>
+        <div class="social-icon" (click)="selectIcon('Twitter')">
+          <img src="assets/twitter.svg" alt="Twitter" />
+        </div>
+        <div class="social-icon" (click)="selectIcon('Snapchat')">
+          <img src="assets/snapchat.svg" alt="Snapchat" />
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="post-image-container">
+    <div class="post-image">
+      <img [src]="topPost.photoUrl" alt="Post Image" />
+    </div>
+
+    <div *ngIf="selectedIcon === 'assets/snapchat.svg'" class="streak-peak-text">
+      Streak Peak
+    </div>
+  </div>
+  <div class="post-footer">
+    <span class="post-likes">
+      <img [src]="selectedSymbol" alt="Likes" class="heart-icon" />
+      <strong>{{ topPost.likes }} {{iconString}}</strong>
+    </span>
+  </div>
+</div>
+<!-- ------------------------------Slide show form ----------------------------- -->
+<div class="slide-button-container">
+  <button class="slideshow-button" (click)="toggleForm()">SlideShow</button>
+</div>
+<div *ngIf="showForm" class="slideshow-form">
+  <h3>Select Date Range for SlideShow</h3>
+  <form [formGroup]="slideshowForm" (ngSubmit)="onSave()">
+    <label for="fromDate">From Date:</label>
+    <input type="date" id="fromDate" formControlName="fromDate" required>
+    
+    <label for="toDate">To Date:</label>
+    <input type="date" id="toDate" formControlName="toDate" required>
+    
+    <div class="button-group">
+      <button type="submit" class="save-button" [disabled]="slideshowForm.invalid">Save</button>
+      <button type="button" class="cancel-button" (click)="toggleForm()">Cancel</button>
+    </div>
+  </form>
+</div>
+<div *ngIf="showSlids">
+  <div class="vertical-slider-container">
+    <div class="coverflow-slider" id="coverflowSlider">
+      <!-- Example of slides, can be dynamically generated -->
+      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 1" style="--delay: -1;"></div>
+      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 2" style="--delay: 0;"></div>
+      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 3" style="--delay: 1;"></div>
+      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 4" style="--delay: 2;"></div>
+      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 5" style="--delay: 3;"></div>
+      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 6" style="--delay: 4;"></div>
+      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 7" style="--delay: 5;"></div>
+      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 8" style="--delay: 6;"></div>
+      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 9" style="--delay: 7;"></div>
+      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 10" style="--delay: 8;"></div>
+      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 11" style="--delay: 9;"></div>
+      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 12" style="--delay: 10;"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!topPost" class="no-post">
+  <p>No posts available at the moment.</p>
+</div>

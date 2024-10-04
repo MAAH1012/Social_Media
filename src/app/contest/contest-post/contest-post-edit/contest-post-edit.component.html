@@ -1,0 +1,65 @@
+<div class="post-form-container">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="mediaId">Social Media ID:</label>
+        <input id="mediaId" formControlName="mediaId" type="text" />
+        <div *ngIf="postForm.get('mediaId').invalid && postForm.get('mediaId').touched">
+          <small *ngIf="postForm.get('mediaId').errors?.required">Social Media ID is required.</small>
+          <small *ngIf="postForm.get('mediaId').errors?.minlength">Social Media ID must be at least 3 characters long.</small>
+        </div>
+      </div>
+  
+      <!-- Type of Media Dropdown -->
+      <div class="form-group">
+        <label for="mediaType">Type of Media:</label>
+        <select id="mediaType" formControlName="mediaType">
+          <option value="">Select Media Type</option>
+          <option *ngFor="let type of mediaTypes" [value]="type">{{ type }}</option>
+        </select>
+        <div *ngIf="postForm.get('mediaType').invalid && postForm.get('mediaType').touched">
+          <small>Please select a media type.</small>
+        </div>
+      </div>
+  
+      <!-- Contest Name Dropdown -->
+      <div class="form-group">
+        <label for="contestId">Contest Name:</label>
+        <select id="contestId" formControlName="contestId">
+          <option value="">Select Contest</option>
+          <option *ngFor="let contest of contests" [value]="contest.id">{{ contest.tag }}</option>
+        </select>
+        <div *ngIf="postForm.get('contestId').invalid && postForm.get('contestId').touched">
+          <small>Please select a contest.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="content">Post Content:</label>
+        <textarea id="content" formControlName="content"></textarea>
+        <div *ngIf="postForm.get('content').invalid && postForm.get('content').touched">
+          <small>Post content is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="likes">Likes:</label>
+        <input id="likes" formControlName="likes" type="number" />
+        <div *ngIf="postForm.get('likes').invalid && postForm.get('likes').touched">
+          <small *ngIf="postForm.get('likes').errors?.required">Likes are required.</small>
+          <small *ngIf="postForm.get('likes').errors?.min">Likes must be at least 0.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="photo">Upload Photo (JPG only):</label>
+        <input id="photo" type="file" (change)="onFileChange($event)" accept=".jpg, .jpeg" />
+        <div *ngIf="fileError" class="error">
+          <small>{{ fileError }}</small>
+        </div>
+      </div>
+  
+      <button type="submit">Submit</button>
+      <button type="button" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+  

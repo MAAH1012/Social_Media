@@ -1,0 +1,48 @@
+<div class="contest-list-container">
+    <h2>Contests</h2>
+    <button class="all-contests-btn" (click)="navigateToPostList()">List</button>
+    <!-- Search Bar -->
+  <div class="search-bar">
+    <input 
+      type="text" 
+      placeholder="Search contests..." 
+      [(ngModel)]="searchQuery" 
+      (input)="filterContests()" 
+    />
+  </div>
+    <ul class="contest-list">
+      <li *ngFor="let contest of filteredContests" class="contest-item">
+        <div class="contest-info" (click)="navigateToPosts(contest.id)">
+          <div class="contest-tag">{{ contest.tag }}</div>
+          <div class="contest-dates">{{ contest.fromDate | date: 'MMM dd, yyyy' }} - {{ contest.toDate | date: 'MMM dd, yyyy' }}</div>
+        </div>
+        <div class="contest-actions">
+          <button class="edit-btn" (click)="editContest(contest)">Edit</button>
+          <button class="delete-btn" (click)="deleteContest(contest.id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+</div>
+  
+<!-- Edit Modal -->
+<div class="modal-backdrop" *ngIf="editingContest">
+  <div class="modal-content">
+    <app-contest-edit
+    [contest]="editingContest"
+    (saveContest)="onSaveContest($event)"
+    (cancelEdit)="onCancelEdit()">
+    </app-contest-edit>
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal-backdrop" *ngIf="showConfirmationModal">
+  <div class="modal-content">
+    <h3>Confirm Delete</h3>
+    <p>Are you sure you want to delete this contest?</p>
+    <div class="modal-actions">
+      <button class="confirm-btn" (click)="deleteConfirmed()">Confirm</button>
+      <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+    </div>
+  </div>
+</div>

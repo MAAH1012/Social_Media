@@ -1,0 +1,34 @@
+<div class="contest-create-container">
+    <h2>Create Weekly Contest</h2>
+  
+    <form [formGroup]="contestForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="tag">Challenge Tag:</label>
+        <input id="tag" formControlName="tag" type="text" placeholder="e.g., Selfie with a Tree" />
+        <div *ngIf="contestForm.get('tag').invalid && contestForm.get('tag').touched">
+          <small *ngIf="contestForm.get('tag').errors?.required">Challenge tag is required.</small>
+          <small *ngIf="contestForm.get('tag').errors?.minlength">Tag must be at least 3 characters long.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="fromDate">From (Start Date):</label>
+        <input id="fromDate" formControlName="fromDate" type="date" />
+        <div *ngIf="contestForm.get('fromDate').invalid && contestForm.get('fromDate').touched">
+          <small *ngIf="contestForm.get('fromDate').errors?.required">Start date is required.</small>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="toDate">To (End Date):</label>
+        <input id="toDate" formControlName="toDate" type="date" />
+        <div *ngIf="contestForm.get('toDate').invalid && contestForm.get('toDate').touched">
+          <small *ngIf="contestForm.get('toDate').errors?.required">End date is required.</small>
+          <small *ngIf="toDateInvalid">End date must be after start date.</small>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="contestForm.invalid || toDateInvalid">Create Contest</button>
+    </form>
+</div>
+  

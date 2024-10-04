@@ -1,0 +1,64 @@
+<div class="search-bar-container">
+  <i class="search-icon fa fa-search"></i> <!-- Search icon inside search bar -->
+  <input type="text"
+         class="search-bar"
+         placeholder="Search posts..."
+         [(ngModel)]="searchQuery"
+         [class.open]="true" />
+</div>
+
+
+<div *ngFor="let date of getPostDates()">
+  <div *ngIf="groupedPosts[date]?.length > 0">
+    <h3>{{ date }}</h3> <!-- Display the date -->
+    <div *ngFor="let post of filteredPosts(groupedPosts[date])" class="post-container">
+      <div class="post-info">
+        <div class="post-header">
+          <p>{{ post.mediaId }}</p>
+          <p class="post-time">{{ formatTime(post.timestamp) }}</p>
+        </div>
+        <div class="post-content">{{ post.content }}</div>
+        <div class="post-likes">{{ post.likes }} Likes</div>
+      </div>
+      <div class="post-image">
+        <img [src]="post.photoUrl" alt="Post Image" />
+      </div>
+
+      <!-- Three Dots Icon for Menu -->
+      <div class="post-menu" appDropdown>
+        <button class="menu-button">⋮</button>
+        <div class="dropdown-menu">
+          <p (click)="editPost(post)">Edit Post</p>
+          <p (click)="deletePost(post)">Delete Post</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!getPostDates().length">
+  <p>No posts available at the moment.</p>
+</div>
+
+  
+<div class="modal-backdrop" *ngIf="editingPost">
+  <div class="modal-content">
+    <app-contest-post-edit
+      [post]="editingPost"
+      (saveContestPost)="onSavePost($event)"
+      (cancelEdit)="onCancelEdit()"
+    ></app-contest-post-edit>
+  </div>
+</div>
+  
+<!-- Confirmation Modal -->
+<div class="modal-backdrop" *ngIf="showConfirmationModal">
+  <div class="modal-content">
+    <h3>Confirm Delete</h3>
+    <p>Are you sure you want to delete this contest?</p>
+    <div class="modal-actions">
+      <button class="confirm-btn" (click)="deleteConfirmed()">Confirm</button>
+      <button class="cancel-btn" (click)="cancelDelete()">Cancel</button>
+    </div>
+  </div>
+</div>

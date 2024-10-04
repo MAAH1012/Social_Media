@@ -1,0 +1,83 @@
+<!-- Search Bar -->
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    placeholder="Search by Media ID"
+    class="search-input"
+  />
+</div>
+
+<!-- Posts List -->
+<div *ngFor="let date of getPostDates()">
+  <div *ngIf="getFilteredPostsByDate(date).length > 0">
+    <h3>{{ date }}</h3> <!-- Display the date -->
+    <div *ngFor="let post of getFilteredPostsByDate(date)" class="post-container">
+      <div class="post-info">
+        <div class="post-header">
+          <p>{{ post.mediaId }}</p>
+          <p class="post-time">{{ formatTime(post.timestamp) }}</p>
+        </div>
+        <div class="post-content">{{ post.content }}</div>
+        <div class="post-likes">{{ post.likes }} Likes</div>
+      </div>
+      <div class="post-image">
+        <img [src]="post.photoUrl" alt="Post Image" />
+      </div>
+
+      <!-- Three Dots Icon for Menu -->
+      <div class="post-menu" appDropdown>
+        <button class="menu-button">⋮</button>
+        <div class="dropdown-menu">
+          <p (click)="editPost(post)">Edit Post</p>
+          <p (click)="deletePost(post)">Delete Post</p>
+          <p (click)="declareWinner(post)">Declare as Winner</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Declare as Winner Modal -->
+<div class="modal-backdrop" *ngIf="winnerPost">
+  <div class="modal-content">
+    <form [formGroup]="declareWinnerForm" (ngSubmit)="onDeclareWinner()">
+      <h2>Declare Winner</h2>
+      
+      <!-- Image Upload -->
+      <div>
+        <label for="winnerImage">Upload Winner Image:</label>
+        <input id="photo" type="file" (change)="onFileChange($event)" accept=".jpg, .jpeg" />
+        <div *ngIf="fileError" class="error">
+          <small>{{ fileError }}</small>
+        </div>
+      </div>
+      
+      <!-- Date Input -->
+      <div>
+        <label for="winnerDate">Select Date:</label>
+        <input type="date" formControlName="winnerDate" />
+      </div>
+      
+      <button type="submit" [disabled]="declareWinnerForm.invalid">Declare</button>
+      <button type="button" (click)="closeWinnerModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- No posts available -->
+<div *ngIf="!getPostDates().length">
+  <p>No posts available at the moment.</p>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal-backdrop" *ngIf="editingPost">
+  <div class="modal-content">
+    <app-post-edit
+      [post]="editingPost"
+      (savePost)="onSavePost($event)"
+      (cancelEdit)="onCancelEdit()"
+    ></app-post-edit>
+  </div>
+</div>

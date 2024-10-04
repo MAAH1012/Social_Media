@@ -14,6 +14,15 @@ export abstract class AbstractCommonService {
     });
     }
 
+    protected httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authtoken
+    });
+
+    protected httpHeadersForMultiparts = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.authtoken
+    })
+
     protected fullUrl:string;
     constructor(protected http: HttpClient){
         this.fullUrl = AbstractCommonService.baseUrl ;
