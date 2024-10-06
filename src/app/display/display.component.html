@@ -80,19 +80,9 @@
 <div *ngIf="showSlids">
   <div class="vertical-slider-container">
     <div class="coverflow-slider" id="coverflowSlider">
-      <!-- Example of slides, can be dynamically generated -->
-      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 1" style="--delay: -1;"></div>
-      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 2" style="--delay: 0;"></div>
-      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 3" style="--delay: 1;"></div>
-      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 4" style="--delay: 2;"></div>
-      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 5" style="--delay: 3;"></div>
-      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 6" style="--delay: 4;"></div>
-      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 7" style="--delay: 5;"></div>
-      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 8" style="--delay: 6;"></div>
-      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 9" style="--delay: 7;"></div>
-      <div class="slider-item"><img src="assets/moon.jpg" alt="Slide 10" style="--delay: 8;"></div>
-      <div class="slider-item"><img src="assets/cloudmoon.jpg" alt="Slide 11" style="--delay: 9;"></div>
-      <div class="slider-item"><img src="assets/laddu.jpg" alt="Slide 12" style="--delay: 10;"></div>
+      <div *ngFor="let post of slideShowPosts" class="slider-item">
+        <img [src]="post.winPhotoUrl" alt="Post Image">
+      </div>
     </div>
   </div>
 </div>

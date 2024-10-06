@@ -22,6 +22,7 @@ export class DisplayComponent implements OnInit {
   selectedIcon: string | null = null;
   selectedSymbol: string | null = 'assets/red-heart-icon.svg';
   iconString: string = "Likes";
+  slideShowPosts : Post[] =[];
 
   showForm: boolean = false;
   showSlids: boolean = false;
@@ -120,13 +121,20 @@ selectedPlatform: any;
   }
 
   onSave() {
+    debugger
     if (this.slideshowForm.valid) {
       this.showForm = false;
-      this.showSlids = true; // show slider when form is saved
-
-      setTimeout(() => {
-        this.initializeSlider();
-      }, 0);
+      this.showSlids = true;
+      const fromDate = this.slideshowForm.value.fromDate;
+      const toDate = this.slideshowForm.value.toDate;
+      this.postService.getSlidshowPics(fromDate, toDate).subscribe(resp => {
+        debugger
+        console.log(resp);
+        this.slideShowPosts = resp;
+        setTimeout(() => {
+          this.initializeSlider();
+        }, 0);
+      });
     }
   }
   // Method to select an icon and update the button

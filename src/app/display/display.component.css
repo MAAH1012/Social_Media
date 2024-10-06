@@ -31,7 +31,7 @@
   color: #333;
 }
 
-.post-image {
+/* .post-image {
   background-color: rgba(255, 255, 255, 0.7);
   position: relative;
   width: 100%;
@@ -42,9 +42,9 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 10px; /* Rounded corners for the image */
+  border-radius: 10px;
   
-}
+} */
 
 .post-footer {
   display: flex;
@@ -152,16 +152,19 @@
 
 .post-image-container {
   position: relative;
-  width: 100%;
+  width: 500px;
+  height: 500px;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
 }
 
-/* .post-image img {
+.post-image img {
   width: 100%;
-  height: auto;
-  border-radius: 15px;
-} */
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
 .streak-peak-text {
   position: absolute;
