@@ -6,5 +6,7 @@ export interface Post {
     photoUrl: string;
     timestamp: string;
     mediaType: string;
+    winDate: string;
+    winPhotoUrl: string
 }
   

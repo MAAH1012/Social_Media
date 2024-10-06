@@ -452,7 +452,7 @@ html, body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   perspective: 100px;
   flex-shrink: 0;
-  
+  border-radius: 10px;
 }
 
 .slider-item img {
@@ -469,6 +469,7 @@ html, body {
 /* Transform effect for the centered image */
 .centered {
   transform: translateZ(30px);
+  border-radius: 10px;
   transition: transform 1.5s ease-in-out;
 }
 /* ----------------------------------slide show forms -------------------------------------- */

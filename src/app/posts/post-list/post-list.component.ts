@@ -51,7 +51,6 @@ export class PostListComponent {
   }
 
   getFilteredPostsByDate(date: string): Post[] {
-    debugger
     if (!this.searchQuery.trim()) {
       return this.groupedPosts[date] || [];
     }
@@ -169,5 +168,27 @@ removeDeletedPostFromUI(postId: number): void {
   closeWinnerModal() {
     this.winnerPost = null;
     this.declareWinnerForm.reset();
+  }
+
+  onDeclareWinner() {
+    debugger
+    if (this.declareWinnerForm.valid && this.selectedFile) {
+      const formData = new FormData();
+      let body = this.winnerPost;
+      this.winnerPost.winDate = this.declareWinnerForm.value.winnerDate;
+      formData.append('file', this.selectedFile);
+      formData.append('body',  new Blob([JSON.stringify(body)], {type: 'image/jpeg'}));
+
+      // Call the service to declare the winner with the post details
+      this.postService.declareWinner(formData).subscribe(
+        (response) => {
+          console.log('Winner declared successfully:', response);
+          this.closeWinnerModal();
+        },
+        (error) => {
+          console.error('Error declaring winner:', error);
+        }
+      );
+    }
   }
 }

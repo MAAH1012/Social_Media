@@ -38,4 +38,9 @@ export class PostService extends AbstractCommonService{
     debugger
     return this.http.delete<void>(this.fullUrl + "deletepost/" + id, {headers: this.httpHeaders});
   }
+
+  declareWinner(file: FormData){
+    debugger
+    return this.http.post<void>(this.fullUrl + "winpost", file, {headers: this.httpHeadersForMultiparts});
+  }
 }

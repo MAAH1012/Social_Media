@@ -33,7 +33,9 @@ export class DisplayComponent implements OnInit {
     photoUrl: '',
     content: '',
     timestamp: '',
-    mediaType: ''
+    mediaType: '',
+    winDate:'',
+    winPhotoUrl:''
   };
 selectedPlatform: any;
 
@@ -112,8 +114,6 @@ selectedPlatform: any;
       setInterval(updateCenteredImage, 5000); // Adjust timing to match your animation speed
     }
   }
-  
-
   toggleForm() {
     this.showForm = !this.showForm;
     this.showSlids = false; // hide slider when toggling the form
@@ -123,6 +123,7 @@ selectedPlatform: any;
     if (this.slideshowForm.valid) {
       this.showForm = false;
       this.showSlids = true; // show slider when form is saved
+
       setTimeout(() => {
         this.initializeSlider();
       }, 0);
