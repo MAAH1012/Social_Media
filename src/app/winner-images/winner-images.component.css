@@ -1,0 +1,67 @@
+.image-grid {
+  padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-column-gap: 15px; /* Keeps the column gap at 15px */
+    grid-row-gap: 20px; /* Reduces the row gap to 5px */
+  }
+  
+  .image-item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 5px;
+  }
+  
+  .image-item:hover img {
+    transform: scale(1.1);
+     /* Zoom effect on hover */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with transparency */
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: flex-end; /* Align content to the bottom */
+    padding: 10px; /* Adds padding around the details */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 5px;
+  }
+  
+  .image-item:hover .overlay {
+    opacity: 1; /* Show overlay on hover */
+  }
+  
+  .details {
+    color: white;
+    text-align: left;
+  }
+  
+  .details h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .details p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+  }
+  

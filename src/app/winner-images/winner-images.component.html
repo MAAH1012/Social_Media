@@ -1,0 +1,14 @@
+<div class="image-grid">
+    <div class="image-item" *ngFor="let post of winnerPosts">
+      <div class="image-container">
+        <img [src]="post.winPhotoUrl" alt="image">
+        <div class="overlay">
+          <div class="details">
+            <h3>{{ post.mediaId }}</h3>
+            <p>{{ post.content }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
