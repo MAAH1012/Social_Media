@@ -91,7 +91,7 @@ export class ContestDisplayComponent implements OnInit {
 
     const stringMap: { [key: string]: string } = {
       Instagram: 'Likes',
-      Twitter: 'Comments',
+      Twitter: 'Retweets',
       Snapchat: 'Streaks',
       Whatsapp: 'Views',
     };

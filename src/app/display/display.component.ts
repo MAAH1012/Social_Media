@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 import { PostService } from '../posts/posts.service';
 import { Post } from '../posts/post.model';
@@ -18,6 +18,7 @@ interface StreakPost {
 export class DisplayComponent implements OnInit {
 
   @Input() posts: StreakPost[] = [];
+  @ViewChild('fullscreenContainer') fullscreenContainer!: ElementRef;
   topStreaks: StreakPost[] = [];
   selectedIcon: string | null = null;
   selectedSymbol: string | null = 'assets/red-heart-icon.svg';
@@ -48,11 +49,22 @@ selectedPlatform: any;
   }
 
   ngOnInit(): void {
+    debugger
     this.postService.getTopPost().subscribe(data => {
       debugger
       this.topPost = data
       this.selectIcon(data.mediaType);
     });
+  }
+  toggleFullScreen(): void {
+    const elem = this.fullscreenContainer.nativeElement;
+    if (!document.fullscreenElement) {
+      elem.requestFullscreen().catch((err: any) => {
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
   }
   initializeSlider() {
     const slider = document.getElementById('coverflowSlider');
@@ -154,7 +166,7 @@ selectedPlatform: any;
 
     const stringMap: { [key: string]: string } = {
       Instagram: 'Likes',
-      Twitter: 'Comments',
+      Twitter: 'Retweets',
       Snapchat: 'Streaks',
       Whatsapp: 'Views',
     };

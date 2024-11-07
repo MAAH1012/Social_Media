@@ -35,6 +35,8 @@ import { ContestPostListComponent } from './contest/contest-post/contest-post-li
 import { ContestEditComponent } from './contest/contest-edit/contest-edit.component';
 import { ContestPostEditComponent } from './contest/contest-post/contest-post-edit/contest-post-edit.component';
 import { ContestDisplayComponent } from './contest-display/contest-display.component';
+import { WinnerImagesComponent } from './winner-images/winner-images.component';
+import { MainDisplayComponent } from './main-display/main-display.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { ContestDisplayComponent } from './contest-display/contest-display.compo
     ContestPostListComponent,
     ContestEditComponent,
     ContestPostEditComponent,
-    ContestDisplayComponent
+    ContestDisplayComponent,
+    WinnerImagesComponent,
+    MainDisplayComponent
   ],
   imports: [
     BrowserModule,

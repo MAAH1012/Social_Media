@@ -24,6 +24,8 @@ export class PostFormComponent {
       mediaType:['', Validators.required],
       content: ['', Validators.required],
       likes: [0, [Validators.required, Validators.min(0)]],
+      mobile: ['', Validators.required],
+      bill: ['', Validators.required],
     });
   }
 

@@ -17,6 +17,8 @@ import { ContestListComponent } from "./contest/contest-list/contest-list.compon
 import { ContestPostCreateComponent } from "./contest/contest-post/contest-post-create/contest-post-create.component";
 import { ContestPostListComponent } from "./contest/contest-post/contest-post-list/contest-post-list.component";
 import { ContestDisplayComponent } from "./contest-display/contest-display.component";
+import { WinnerImagesComponent } from "./winner-images/winner-images.component";
+import { MainDisplayComponent } from "./main-display/main-display.component";
 
 const appRoutes: Routes = [
     //{ path:'', redirectTo: '/recipes', pathMatch:'full'},
@@ -40,6 +42,8 @@ const appRoutes: Routes = [
     { path: 'contest-post', component: ContestPostCreateComponent},
     { path: 'contest-display', component: ContestDisplayComponent},
     { path: 'contest/:id/posts', component: ContestPostListComponent },
+    { path: 'winners', component: WinnerImagesComponent },
+    { path: 'maindisplay', component: MainDisplayComponent },
     { path: '', redirectTo: '/display', pathMatch: 'full' }
 ];
 @NgModule({

@@ -50,4 +50,8 @@ export class PostService extends AbstractCommonService{
     params = params.append('toDate', toDate);
     return this.http.get<Post[]>(this.fullUrl + "getslideshowpics", {headers: this.httpHeaders, params: params});
   }
+  getWinnerPosts(){
+    debugger
+    return this.http.get<Post[]>(this.fullUrl + "getwinnerposts", {headers: this.httpHeaders});
+  }
 }

@@ -27,24 +27,32 @@
 
 <div class="body">
     <header class="app-header">
-        <div class="header-content">
-          <h1 class="logo">Today's Celebrity</h1>
-          <nav>
-            <ul>
-                <li routerLinkActive="active"><a routerLink="/auth" *ngIf="isnotAuthenticated">Authenticate</a></li>
-                <li routerLinkActive="active"><a routerLink="/display" *ngIf="!isnotAuthenticated">Home</a></li>
-                <li routerLinkActive="active"><a routerLink="/posts-forms" *ngIf="!isnotAuthenticated">Add Post</a></li>
-                <li routerLinkActive="active"><a routerLink="/posts-list" *ngIf="!isnotAuthenticated">Posts List</a></li>
-                <li routerLinkActive="active"><a routerLink="/contest-create" *ngIf="!isnotAuthenticated">Create Contest</a></li>
-                <li routerLinkActive="active"><a routerLink="/contest-list" *ngIf="!isnotAuthenticated">Contest List</a></li>
-                <li routerLinkActive="active"><a routerLink="/contest-post" *ngIf="!isnotAuthenticated">Add CP</a></li>
-                <li routerLinkActive="active"><a routerLink="/contest-display" *ngIf="!isnotAuthenticated">Contest Display</a></li>
-            </ul>
-          </nav>
-          <div class="user-info" *ngIf="!isnotAuthenticated">
-            <button (click)="logOut()">Logout</button>
-          </div>
+        <button class="toggle-btn" (click)="isNavOpen = !isNavOpen">
+            ☰
+        </button>
+        <div class="sidebar" [ngClass]="{'open': isNavOpen}">
+            <div class="header-content">
+                <h1 class="logo">Celebrity</h1>
+                <nav>
+                    <ul>
+                        <li routerLinkActive="active"><a routerLink="/auth" *ngIf="isnotAuthenticated">Authenticate</a></li>
+                        <li routerLinkActive="active"><a routerLink="/display" *ngIf="!isnotAuthenticated">Home</a></li>
+                        <li routerLinkActive="active"><a routerLink="/posts-forms" *ngIf="!isnotAuthenticated">Add Post</a></li>
+                        <li routerLinkActive="active"><a routerLink="/posts-list" *ngIf="!isnotAuthenticated">Posts List</a></li>
+                        <li routerLinkActive="active"><a routerLink="/contest-create" *ngIf="!isnotAuthenticated">Create Contest</a></li>
+                        <li routerLinkActive="active"><a routerLink="/contest-list" *ngIf="!isnotAuthenticated">Contest List</a></li>
+                        <li routerLinkActive="active"><a routerLink="/contest-post" *ngIf="!isnotAuthenticated">Add CP</a></li>
+                        <li routerLinkActive="active"><a routerLink="/contest-display" *ngIf="!isnotAuthenticated">Contest Display</a></li>
+                        <li routerLinkActive="active"><a routerLink="/winners" *ngIf="!isnotAuthenticated">Winner Images</a></li>
+                        <li routerLinkActive="active"><a routerLink="/maindisplay" *ngIf="!isnotAuthenticated">Main Display</a></li>
+                    </ul>
+                </nav>
+                <div class="user-info" *ngIf="!isnotAuthenticated">
+                    <button (click)="logOut()">Logout</button>
+                </div>
+            </div>
         </div>
     </header>
 </div>
+
   

@@ -18,7 +18,7 @@ export class ContestPostEditComponent {
   postForm: FormGroup;
   fileError: string | null = null; // To display file upload errors
   selectedFile: File | null = null;
-  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'WhatsApp'];
+  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'Whatsapp'];
   contests: Contest[] = [];
 
   constructor(private fb: FormBuilder, private contestPostService: ContestService, private router: Router) {

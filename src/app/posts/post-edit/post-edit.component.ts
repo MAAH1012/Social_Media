@@ -17,7 +17,7 @@ export class PostEditComponent implements OnChanges {
   postForm: FormGroup;
   fileError: string | null = null; // To display file upload errors
   selectedFile: File | null = null; // Store selected file
-  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'WhatsApp'];
+  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'Whatsapp'];
 
   constructor(private fb: FormBuilder, private postService: PostService, private router: Router) {
     this.postForm = this.fb.group({

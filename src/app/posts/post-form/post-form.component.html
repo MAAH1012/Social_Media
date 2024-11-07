@@ -45,6 +45,25 @@
           <small>{{ fileError }}</small>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile Number:</label>
+        <input id="mobile" formControlName="mobile" type="tel" />
+        <div *ngIf="postForm.get('mobile').invalid && postForm.get('mobile').touched">
+          <small *ngIf="postForm.get('mobile').errors?.required">Mobile number is required.</small>
+          <small *ngIf="postForm.get('mobile').errors?.pattern">Invalid mobile number format.</small>
+        </div>
+      </div>
+
+      <!-- Bill Field -->
+      <div class="form-group">
+        <label for="bill">Bill Amount:</label>
+        <input id="bill" formControlName="bill" type="number" />
+        <div *ngIf="postForm.get('bill').invalid && postForm.get('bill').touched">
+          <small *ngIf="postForm.get('bill').errors?.required">Bill amount is required.</small>
+          <small *ngIf="postForm.get('bill').errors?.min">Bill must be at least 0.</small>
+        </div>
+      </div>
   
       <button type="submit">Submit</button>
     </form>

@@ -1,26 +1,189 @@
 @import url('https://fonts.googleapis.com/css2?family=Kolker+Brush&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
 
-.post-display {
+.bodyy{
+  position: fixed;
+  font-family: Poppins;
+  margin: 0;
+  color: #eee;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+.slider{
+  height: 100vh;
+  margin-top: -50px;
+  position: relative;
+}
+
+.slider .list .item{
+  position: absolute;
+  inset: 0 0 0 0;
+  overflow: hidden;
+}
+.slider .list .item::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.slider .list .item .content{
+  position: absolute;
+  left: 5%;
+  top: 30%;
+  width: 400px;
+  max-width: 80%;
+  z-index: 1;
+}
+.slider .list .item .content p{
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+.slider .list .item .content h2{
+  font-size: 4rem;
+  margin: 0;
+}
+
+@keyframes showContent {
+  to{
+    transform: translateY(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+.slider .list .item.active .content p,
+.slider .list .item.active .content h2{
+  transform: translateY(30px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.slider .list .item.active .content h2{
+  animation-delay: 1s;
+}
+.slider .list .item.active .content p{
+  animation-delay: 1.3s;
+}
+.thumbnail{
+  position: fixed;
+  z-index: 11;
+  display: flex;
+  width: 600px;
+  height: 600px;
+  padding: 0 50px;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  top: 10%;
+  left: 35%;
+}
+.thumbnail .item{
+  width: 500px;
+  height: 500px;
+  flex-shrink: 0;
+  position: relative;
+}
+.thumbnail .item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  position: relative;
+} 
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.thumbnail .item::after, .thumbnail .item::before{
+  content: '';
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  background-image: conic-gradient(from var(--angle), transparent 0%,  #eee, #eee);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 10px;
+  border-radius: 10px;
+  filter: blur(20px);
+  animation: 8s spin linear infinite;
+}
+
+@keyframes spin {
+  from{
+    --angle:0deg;
+  }
+  to{
+    --angle: 360deg
+  }
+}
+.thumbnail .item::before{
+  filter: blur(10px);
+  opacity: 0.5;
+}
+.thumbnail .content {
+  position: absolute;
+  inset: auto 10px 10px 10px;
+  bottom: 10px;
+  left: 10px;
+}
+
+.media-content {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start; /* Align the likes to the right */
+  padding: 10px;
+  transform: translateY(30px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.post-likes {
+  display: flex;
+  align-items: center;
+  font-size: 4rem;
+  color: #fff;
+}
+.slider .list .item .heart-icon {
+  width: 60px;
+  height: 60px;
+  margin: 8px;
+  filter: brightness(1);
+  object-fit: fill;
+  border-radius: 5px;
+}
+/* ----------------------------NEW OPERATION ---------------------------- */
+/* .post-display {
   max-width: 500px;
   margin: 30px auto;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.7);
   font-family: Arial, sans-serif;
-  backdrop-filter: blur(5px); /* Optional: Adds a slight blur effect for a frosted glass look */
+  backdrop-filter: blur(5px);
   overflow: hidden;
 
-  /* Add a 3D shadow effect */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), /* Soft shadow */
-              0 2px 10px rgba(0, 0, 0, 0.15); /* Slightly smaller shadow for depth */
-  transition: transform 0.3s ease; /* Smooth scaling effect on hover */
-}
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 
+              0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+} */
 
 /* .post-display:hover {
   transform: translateY(-5px);
 } */
 
-.post-header {
+/* .post-header {
   padding: 10px;
   border-bottom: 1px solid #dbdbdb;
   text-align: left;
@@ -89,7 +252,7 @@
   .no-streak {
     text-align: center;
     color: #ffffff;
-  }
+  } */
   
   /* -------------------- */
 
@@ -201,27 +364,30 @@ html, body {
   background-repeat: no-repeat;
   
   z-index: -1; /* Keeps the background behind other content */
+  
 }
 
 /* Dynamic background based on selected platform */
 .post-display-container.instagram {
   background-image: url('/assets/yyyyy.png');
-  background: linear-gradient(115deg, #f9ce34, #ee2a7b, #6228d7);
+  background: linear-gradient(315deg, #130f40 , #000000 );
+  
 }
 
 .post-display-container.twitter {
   background-color: #130f40;
   background-image:linear-gradient(315deg, #130f40 , #000000 );
+  
 }
 
-
-
 .post-display-container.snapchat {
-  background: linear-gradient(60deg, #fffb19, #fffb20, #fffb25, #fffda2, #ffffff);
+  background: linear-gradient(315deg, #130f40 , #000000 );
+  
 }
 
 .post-display-container.whatsapp {
-  background: linear-gradient(30deg, #20e416, #16ef27, #12fa39, #5dff6b, #97ff9d, #a3ffa8, #90ff93, #79ff7b, #5dff5a, #2eff1b);
+  background: linear-gradient(315deg, #130f40 , #000000 );
+  
 }
 
 /* Floating and Rotation effect animation */
@@ -280,38 +446,47 @@ html, body {
 }
 
 .whats img{
+  position: fixed;
+  display: flex;
   width: 500px;
   height: 500px; 
   border: 18px solid #fff;
-  display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
   animation: rotateLogo 3s forwards;
   transform-origin: bottom left;
+  top: 10%;
+  left: 35%;
 }
 .snap img{
+  position: fixed;
+  display: flex;
   width: 500px;
   height: 500px; 
   border: 18px solid #fff;
-  display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
   animation: rotateLogo 3s forwards;
   transform-origin: bottom left;
+  top: 15%;
+  left: 35%;
 }
 
 .twitter img{
+  position: fixed;
+  display: flex;
   width: 500px;
   height: 500px; 
   border: 18px solid #fff;
-  display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
   animation: rotateLogo 3s forwards;
   transform-origin: bottom left;
+  top: 10%;
+  left: 35%;
 }
 
 /* ---------------------------------------------------------- Slide Show ------------------------------------------------ */
@@ -412,14 +587,14 @@ html, body {
 /* 3D Coverflow Slider Container */
 .vertical-slider-container {
   position: absolute;
-  right: -350px;
-  top: 60%;
-  transform: translateY(-50%);
+  right: 5%;
+  top: 150px;
   width: 500px;
   height: 600px;
   overflow: hidden;
   display: flex;
   justify-content: center;
+  z-index: 100000;
 }
 
 .coverflow-slider {
@@ -464,13 +639,18 @@ html, body {
 /* ----------------------------------slide show forms -------------------------------------- */
 
 /* Style for SlideShow button */
+.example{
+  display:flex;
+  justify-content: space-between;
+}
 .slide-button-container {
   position: absolute;
   top: 0;
-  right: 50px;
+  right: 8%;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .slideshow-button {
@@ -479,11 +659,9 @@ html, body {
   color: white;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-family: "Dancing Script", cursive;
-  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-size: 64px;
@@ -557,4 +735,122 @@ html, body {
 
 .cancel-button:hover {
   background-color: #c82333;
+}
+
+/* ---------------------------------------------- */
+
+.fullscreen-container {
+  position: relative;
+  text-align: center;
+}
+
+.content {
+  width: 100%;
+  max-height: 100vh;
+  object-fit: contain;
+}
+
+.fullcreenbutton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.footer-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 20px;
+  background: transparent;
+  margin-top: 20px;
+  position: fixed; /* Fixes it to the viewport bottom */
+  bottom: 50px; /* Aligns to bottom */
+  left: 10px;
+  right: 0;
+  width: 100%;
+  height: 200px; /* Increased height for the footer */
+  z-index: 1000; /* Ensures it stays above other content */
+}
+
+.footer-column {
+  display: flex;
+  align-items: flex-start;
+  width: 22%; /* Adjust to fit all four columns */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+
+.vertical-bar {
+  width: 5px;
+  height: 100%;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-content h4 {
+  margin: 0;
+  font-size: 1.2em;
+  color: white;
+}
+
+.post-details {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.footer-image {
+  width: 150px; /* Increased image width */
+  height: 150px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.post-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-text p,
+.post-text span {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: white;
+}
+
+/* Colors for each vertical bar */
+.pink-bar { background-color: #ff69b4; }
+.yellow-bar { background-color: #ffd700; }
+.skyblue-bar { background-color: #87ceeb; }
+.green-bar { background-color: #32cd32; }
+
+/* Specific styling for each platform's column */
+.insta-column { color: #C13584; }
+.snap-column { color: #FFFC00; }
+.twitter-column { color: #1DA1F2; }
+.whatsapp-column { color: #25D366; }
+
+/* Responsive layout for footer row */
+@media (max-width: 768px) {
+  .footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-column {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

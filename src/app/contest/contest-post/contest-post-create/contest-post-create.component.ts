@@ -15,7 +15,7 @@ export class ContestPostCreateComponent {
   postForm: FormGroup;
   selectedFile: File | null = null;
   fileError: string | null = null;
-  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'WhatsApp'];
+  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'Whatsapp'];
   contests: Contest[] = [];
 
   constructor(private fb: FormBuilder, private contestService: ContestService, private router: Router) {}

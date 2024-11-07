@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
     isnotAuthenticated = true;
     private authSubscription: Subscription;
+    isNavOpen = false; 
     constructor(private dataStorageService: DataStorageService, private authService: AuthService){}
 
     ngOnInit() {
@@ -27,5 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
     }    
     logOut(){
         this.authService.logOut();
+        this.isNavOpen = false;
     }
 }
