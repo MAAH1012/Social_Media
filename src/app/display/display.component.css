@@ -44,6 +44,7 @@
   letter-spacing: 2px;
   font-size: 20px;
   padding-top: 10px;
+  justify-content: start;
 }
 
 .slider .list .item .content h2{
@@ -164,99 +165,10 @@
   object-fit: fill;
   border-radius: 5px;
 }
-/* ----------------------------NEW OPERATION ---------------------------- */
-/* .post-display {
-  max-width: 500px;
-  margin: 30px auto;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.7);
-  font-family: Arial, sans-serif;
-  backdrop-filter: blur(5px);
-  overflow: hidden;
 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 
-              0 2px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-} */
-
-/* .post-display:hover {
-  transform: translateY(-5px);
-} */
-
-/* .post-header {
-  padding: 10px;
-  border-bottom: 1px solid #dbdbdb;
-  text-align: left;
+ strong {
+  color: white;
 }
-
-.post-id {
-  margin: 0;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.post-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px;
-}
-
-.post-likes {
-  display: flex;
-  align-items: center;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.heart-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-}
-  strong {
-    color: #555;
-  }
-  .post-image-container {
-    position: relative;
-    width: 500px;
-    height: 500px;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .post-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  .no-post {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #999;
-    margin: 20px 0;
-  }
-
-  
-  .user-id {
-    font-size: 18px;
-    color: #ffffff;
-    text-align: center;
-  }
-  
-  .image-container {
-    margin: 80px
-  }
-  
-  .no-streak {
-    text-align: center;
-    color: #ffffff;
-  } */
-  
-  /* -------------------- */
-
- /* Positioning for the icon selector */
 .icon-selector-container {
   position: absolute;
   top: 10px;
@@ -448,8 +360,8 @@ html, body {
 .whats img{
   position: fixed;
   display: flex;
-  width: 500px;
-  height: 500px; 
+  width: 300px;
+  height: 300px; 
   border: 18px solid #fff;
   align-items: center;
   justify-content: center;
@@ -462,8 +374,8 @@ html, body {
 .snap img{
   position: fixed;
   display: flex;
-  width: 500px;
-  height: 500px; 
+  width: 300px;
+  height: 300px; 
   border: 18px solid #fff;
   align-items: center;
   justify-content: center;
@@ -477,8 +389,23 @@ html, body {
 .twitter img{
   position: fixed;
   display: flex;
-  width: 500px;
-  height: 500px; 
+  width: 300px;
+  height: 300px; 
+  border: 18px solid #fff;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  animation: rotateLogo 3s forwards;
+  transform-origin: bottom left;
+  top: 10%;
+  left: 35%;
+}
+
+.ins img {
+  position: fixed;
+  display: flex;
+  width: 300px;
+  height: 300px; 
   border: 18px solid #fff;
   align-items: center;
   justify-content: center;
@@ -490,98 +417,6 @@ html, body {
 }
 
 /* ---------------------------------------------------------- Slide Show ------------------------------------------------ */
-
-/* .slideshow{
-  margin: 10px;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Kolker Brush", cursive;
-  position: absolute;
-}
-.cards{
-  background: #28223f;
-  display: grid;
-  place-items: center;
-  min-height: 10vh;
-}
-.outer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.cards .card {
-  background: #fff;
-  padding: 1.5rem;
-  max-width: 30rem;
-  border-radius: .5rem;
-  position: absolute;
-  pointer-events: none;
-  opacity: 0;
-  animation: animate 15s infinite linear;
-  animation-delay: calc(3s * var(--delay));
-}
-.profile, .head{
-  display: flex;
-  align-items: center;
-}
-.head {
-  justify-content: space-between;
-}
-.profile {
-  margin-bottom: 1rem;
-}
-.profile .images {
-  height: 50px;
-  width: 50px;
-  border-radius: 5%;
-  padding: 5px;
-  background: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.178);
-}
-.profile .images img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.profile .details {
-  margin-left: 10px;
-}
-.op-star{
-  color: #28223f;
-  font-size: 1.1rem;
-}
-.outer:hover .card {
-  animation-play-state: paused;
-}
-.cards .card:last-child {
-  animation-delay: calc(-3s * var(--delay));
-}
-
-@keyframes animate {
-  0% {
-    opacity: 0;
-    transform: translateY(100%) scale(0.5);  
-  }
-  5%, 20% {
-    opacity: 0.4;
-    transform: translateY(100%) scale(0.7);  
-  }
-  25%, 40% {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateY(0%) scale(1);  
-  }
-  45%, 60% {
-    opacity: 0.4;
-    transform: translateY(-100%) scale(0.7);  
-  }
-  65%, 100% {
-    opacity: 0;
-    transform: translateY(-100%) scale(0.5);  
-  }
-} */
-
 /* ----------------------------------------------------- Auto Slideshow --------------------------------------------------------- */
 
 /* 3D Coverflow Slider Container */
@@ -595,6 +430,8 @@ html, body {
   display: flex;
   justify-content: center;
   z-index: 100000;
+  scroll-behavior: smooth;
+  max-height: 500px;
 }
 
 .coverflow-slider {
@@ -812,11 +649,41 @@ html, body {
   margin-top: 10px;
 }
 
-.footer-image {
+.footer-image-insta {
+  width: 170px; /* Increased image width */
+  height: 150px;
+  border-radius: 8px;
+  margin-right: 10px;
+  border-left: 10px solid #C13584;
+  padding-left: 10px; /* Adds space between the border and the image */
+  box-sizing: border-box; /* Ensures the padding doesn't increase the overall width */
+}
+.footer-image-snap {
   width: 150px; /* Increased image width */
   height: 150px;
   border-radius: 8px;
   margin-right: 10px;
+  border-left:10px solid yellow;
+  padding-left: 10px; /* Adds space between the border and the image */
+  box-sizing: border-box;
+}
+.footer-image-twit {
+  width: 150px; /* Increased image width */
+  height: 150px;
+  border-radius: 8px;
+  margin-right: 10px;
+  border-left:10px solid  #1DA1F2;
+  padding-left: 10px; /* Adds space between the border and the image */
+  box-sizing: border-box;
+}
+.footer-image-what {
+  width: 150px; /* Increased image width */
+  height: 150px;
+  border-radius: 8px;
+  margin-right: 10px;
+  border-left:10px solid #4caf50 ;
+  padding-left: 10px; /* Adds space between the border and the image */
+  box-sizing: border-box;
 }
 
 .post-text {
@@ -827,8 +694,9 @@ html, body {
 .post-text p,
 .post-text span {
   margin: 5px 0;
-  font-size: 0.9em;
+  font-size: 1.5em;
   color: white;
+  font-family: Poppins;
 }
 
 /* Colors for each vertical bar */
@@ -853,4 +721,35 @@ html, body {
     width: 100%;
     margin-bottom: 10px;
   }
+
+  .bodyy {
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .thumbnail, .slider .list {
+    width: 100%;
+  }
+
+  .slideshow-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+.likes-container {
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+  font-size: 2em;
+}
+
+.symbol {
+  width: 20px; /* Adjust this value as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 5px; /* Add some space between the icon and the text */
+  font-size: 1.5em;
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
 }

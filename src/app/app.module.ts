@@ -37,6 +37,7 @@ import { ContestPostEditComponent } from './contest/contest-post/contest-post-ed
 import { ContestDisplayComponent } from './contest-display/contest-display.component';
 import { WinnerImagesComponent } from './winner-images/winner-images.component';
 import { MainDisplayComponent } from './main-display/main-display.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { MainDisplayComponent } from './main-display/main-display.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [ShoppingListService, RecipeService, PostService],
   bootstrap: [AppComponent]

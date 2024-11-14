@@ -1,19 +1,12 @@
 
 <div #fullscreenContainer class="fullscreen-container">
   <div class="post-display-container" [ngClass]="selectedPlatform">
-      <div *ngIf="selectedIcon === 'assets/instagram.svg'" class="insta">
-        <div class="insta-inner"></div>
+    <ng-container *ngFor="let icon of icons">
+      <div *ngIf="selectedIcon === icon.path" [ngClass]="icon.class">
+        <img *ngIf="icon.imgSrc" [src]="icon.imgSrc" [alt]="icon.altText" />
       </div>
-      <div *ngIf="selectedIcon === 'assets/whatsapp.svg'" class="whats">
-        <img src="assets/wiki.svg" alt="whatsapp">
-      </div>
-      <div *ngIf="selectedIcon === 'assets/snapchat.svg'" class="snap">
-        <img src="assets/snapchat-logo.svg" alt="snapchat">
-      </div>
-      <div *ngIf="selectedIcon === 'assets/twitter.svg'" class="twitter">
-        <img src="assets/twitter2.svg" alt="twitter">
-      </div>
-  </div>
+    </ng-container>
+</div>
   <div class="bodyy">
     <div class="slider">
       <div class="list">
@@ -46,8 +39,8 @@
       <div class="vertical-slider-container">
         <div class="coverflow-slider" id="coverflowSlider">
           <div *ngFor="let post of slideShowPosts" class="slider-item">
-          <img [src]="post.winPhotoUrl" alt="Post Image">
-        </div>
+            <img [src]="post.winPhotoUrl" alt="Post Image">
+          </div>
         </div>
       </div>
     </div>
@@ -78,11 +71,27 @@
       <div class="vertical-bar pink-bar"></div>
       <div class="footer-content">
         <h4>Instagram</h4>
-        <div class="post-details">
-          <img src="assets/laddu.jpg" alt="Instagram Post" class="footer-image" />
+        <div *ngIf="topInstaPost" class="post-details">
+          <img [src]="topInstaPost.photoUrl" alt="Instagram Post" class="footer-image-insta" />
           <div class="post-text">
-            <p>{{ "instagramPost.details" }}</p>
-            <span><strong>Likes:</strong> {{ 5446 }}</span>
+            <p><strong>{{ topInstaPost.mediaId }}</strong></p>
+            <p>{{ topInstaPost.content }}</p>
+            <div class="likes-container">
+              <img src="assets/red-heart-icon.svg" alt="redHeart" class="symbol" />
+              <strong>{{ topInstaPost.likes }} {{'Likes'}}</strong>
+            </div>
+          </div>
+        </div>
+        <!-- ----------------- -->
+        <div *ngIf="topInstaPost === null" class="post-details">
+          <img src="assets/No-Image-Placeholder.svg" alt="Instagram Post" class="footer-image-insta" />
+          <div class="post-text">
+            <p><strong>{{ '@-------' }}</strong></p>
+            <p>{{ '------------' }}</p>
+            <div class="likes-container">
+              <img src="assets/red-heart-icon.svg" alt="redHeart" class="symbol" />
+              <strong>{{ '----' }} {{'Likes'}}</strong>
+            </div>
           </div>
         </div>
       </div>
@@ -93,11 +102,27 @@
       <div class="vertical-bar yellow-bar"></div>
       <div class="footer-content">
         <h4>Snapchat</h4>
-        <div class="post-details">
-          <img src="assets/laddu.jpg" alt="Snapchat Post" class="footer-image" />
+        <div *ngIf="topSnapPost !=null" class="post-details">
+          <img [src]="topSnapPost.photoUrl" alt="Snapchat Post" class="footer-image-snap" />
           <div class="post-text">
-            <p>{{ "snapPost.details" }}</p>
-            <span><strong>Streaks:</strong> {{ 4565 }}</span>
+            <p><strong>{{ topSnapPost.mediaId }}</strong></p>
+            <p>{{ topSnapPost.content }}</p>
+            <div class="likes-container">
+              <img src="assets/flames.svg" alt="redHeart" class="symbol" />
+              <strong>{{ topSnapPost.likes }} {{'Streaks'}}</strong>
+            </div>
+          </div>
+        </div>
+        <!-- ----------------------------- -->
+        <div *ngIf="topSnapPost === null" class="post-details">
+          <img src="assets/No-Image-Placeholder.svg" alt="Snapchat Post" class="footer-image-snap" />
+          <div class="post-text">
+            <p><strong>{{ '@-------' }}</strong></p>
+            <p>{{ '------------' }}</p>
+            <div class="likes-container">
+              <img src="assets/flames.svg" alt="redHeart" class="symbol" />
+              <strong>{{ '----' }} {{'Streaks'}}</strong>
+            </div>
           </div>
         </div>
       </div>
@@ -108,11 +133,27 @@
       <div class="vertical-bar skyblue-bar"></div>
       <div class="footer-content">
         <h4>Twitter</h4>
-        <div class="post-details">
-          <img src="assets/laddu.jpg" alt="Twitter Post" class="footer-image" />
+        <div *ngIf="topTwitterPost" class="post-details">
+          <img [src]="topTwitterPost.photoUrl" alt="Twitter Post" class="footer-image-twit" />
           <div class="post-text">
-            <p>{{ "twitterPost.details" }}</p>
-            <span><strong>Retweets:</strong> {{ 4984 }}</span>
+            <p><strong>{{ topTwitterPost.mediaId }}</strong></p>
+            <p>{{ topTwitterPost.content }}</p>
+            <div class="likes-container">
+              <img src="assets/retweet2.svg" alt="redHeart" class="symbol" />
+              <strong>{{ topTwitterPost.likes }} {{'Retweets'}}</strong>
+            </div>
+          </div>
+        </div>
+        <!-- ------------------------- -->
+        <div *ngIf="!topTwitterPost" class="post-details">
+          <img src="assets/No-Image-Placeholder.svg" alt="Twitter Post" class="footer-image-twit" />
+          <div class="post-text">
+            <p><strong>{{ '@-------' }}</strong></p>
+            <p>{{ '------------' }}</p>
+            <div class="likes-container">
+              <img src="assets/retweet2.svg" alt="redHeart" class="symbol" />
+              <strong>{{ '----' }} {{'Retweets'}}</strong>
+            </div>
           </div>
         </div>
       </div>
@@ -123,11 +164,27 @@
       <div class="vertical-bar green-bar"></div>
       <div class="footer-content">
         <h4>WhatsApp</h4>
-        <div class="post-details">
-          <img src="assets/laddu.jpg" alt="WhatsApp Post" class="footer-image" />
+        <div *ngIf="topWhatsappPost" class="post-details">
+          <img [src]="topWhatsappPost.photoUrl" alt="WhatsApp Post" class="footer-image-what" />
           <div class="post-text">
-            <p>{{ "whatsappPost.details" }}</p>
-            <span><strong>Views:</strong> {{ 7651 }}</span>
+            <p><strong>{{ topWhatsappPost.mediaId }}</strong></p>
+            <p>{{ topWhatsappPost.content }}</p>
+            <div class="likes-container">
+              <img src="assets/see.svg" alt="redHeart" class="symbol" />
+              <strong>{{ topWhatsappPost.likes }} {{'Views'}}</strong>
+            </div>
+          </div>
+        </div>
+        <!-- --------------------------- -->
+        <div *ngIf="!topWhatsappPost" class="post-details">
+          <img src="assets/No-Image-Placeholder.svg" alt="WhatsApp Post" class="footer-image-what" />
+          <div class="post-text">
+            <p><strong>{{ '@-------' }}</strong></p>
+            <p>{{ '------------' }}</p>
+            <div class="likes-container">
+              <img src="assets/see.svg" alt="redHeart" class="symbol" />
+              <strong>{{ '----' }} {{'Views'}}</strong>
+            </div>
           </div>
         </div>
       </div>

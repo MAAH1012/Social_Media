@@ -14,7 +14,7 @@ export class PostFormComponent {
   postForm: FormGroup;
   selectedFile: File | null = null;
   fileError: string | null = null;
-  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'WhatsApp'];
+  mediaTypes: string[] = ['Instagram', 'Twitter', 'Snapchat', 'Whatsapp'];
 
   constructor(private fb: FormBuilder, private postService: PostService, private router: Router) {}
 

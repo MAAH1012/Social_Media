@@ -29,6 +29,55 @@ export class DisplayComponent implements OnInit {
   showSlids: boolean = false;
   slideshowForm: FormGroup;
 
+  topInstaPost: Post= {
+    mediaId: '',
+    likes: 0,
+    photoUrl: '',
+    content: '',
+    timestamp: '',
+    mediaType: '',
+    winDate:'',
+    winPhotoUrl:'',
+    mobile:'',
+    bill: 0
+  };
+  topSnapPost: Post= {
+    mediaId: '',
+    likes: 0,
+    photoUrl: '',
+    content: '',
+    timestamp: '',
+    mediaType: '',
+    winDate:'',
+    winPhotoUrl:'',
+    mobile:'',
+    bill: 0
+  };
+  topTwitterPost: Post= {
+    mediaId: '',
+    likes: 0,
+    photoUrl: '',
+    content: '',
+    timestamp: '',
+    mediaType: '',
+    winDate:'',
+    winPhotoUrl:'',
+    mobile:'',
+    bill: 0
+  };
+  topWhatsappPost: Post= {
+    mediaId: '',
+    likes: 0,
+    photoUrl: '',
+    content: '',
+    timestamp: '',
+    mediaType: '',
+    winDate:'',
+    winPhotoUrl:'',
+    mobile:'',
+    bill: 0
+  };
+
   topPost: Post = {
     mediaId: '',
     likes: 0,
@@ -37,7 +86,9 @@ export class DisplayComponent implements OnInit {
     timestamp: '',
     mediaType: '',
     winDate:'',
-    winPhotoUrl:''
+    winPhotoUrl:'',
+    mobile:'',
+    bill: 0
   };
 selectedPlatform: any;
 
@@ -47,13 +98,49 @@ selectedPlatform: any;
       toDate: ['', Validators.required]
     });
   }
+  icons = [
+  { path: 'assets/instagram.svg', class: 'ins', imgSrc: 'assets/Inst_log.svg', altText: '' },
+  { path: 'assets/whatsapp.svg', class: 'whats', imgSrc: 'assets/wiki.svg', altText: 'whatsapp' },
+  { path: 'assets/snapchat.svg', class: 'snap', imgSrc: 'assets/snapchat-logo.svg', altText: 'snapchat' },
+  { path: 'assets/twitter.svg', class: 'twitter', imgSrc: 'assets/twitter2.svg', altText: 'twitter' },
+];
 
   ngOnInit(): void {
     debugger
     this.postService.getTopPost().subscribe(data => {
       debugger
-      this.topPost = data
+      this.topPost = data;
       this.selectIcon(data.mediaType);
+    });
+    this.postService.getTopInstP().subscribe(data =>{
+      debugger
+      if(data){
+        this.topInstaPost = data;
+      }else{
+        this.topInstaPost = null;
+      }
+    });
+    this.postService.getTopSnapP().subscribe(data => {
+      debugger
+      if(data){
+        this.topSnapPost = data;
+      }else{
+        this.topSnapPost = null;
+      }
+    });
+    this.postService.getTopWhatP().subscribe(data => {
+      if(data){
+        this.topWhatsappPost = data;
+      }else{
+        this.topWhatsappPost = null;
+      }
+    });
+    this.postService.getTopTwitP().subscribe(data => {
+      if(data){
+        this.topTwitterPost = data;
+      }else{
+        this.topTwitterPost = null;
+      }
     });
   }
   toggleFullScreen(): void {
@@ -181,6 +268,5 @@ selectedPlatform: any;
     this.selectedSymbol = sybolMap[platform];
     this.iconString = stringMap[platform];
     this.selectedPlatform = platformClassMap[platform];
-    console.log(`Selected platform: ${platform}`);
   }
 }

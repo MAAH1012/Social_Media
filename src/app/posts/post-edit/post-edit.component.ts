@@ -25,7 +25,9 @@ export class PostEditComponent implements OnChanges {
       mediaType:['', Validators.required],
       content: ['', Validators.required],
       likes: [0, [Validators.required, Validators.min(0)]],
-      photoUrl: ['']
+      photoUrl: [''],
+      mobile: ['', Validators.required],
+      bill: ['', Validators.required],
     });
   }
 
@@ -36,7 +38,9 @@ export class PostEditComponent implements OnChanges {
         mediaType: this.post.mediaType,
         content: this.post.content,
         likes: this.post.likes,
-        photoUrl: this.post.photoUrl
+        photoUrl: this.post.photoUrl,
+        mobile: this.post.mobile,
+        bill: this.post.bill
       });
     }
   }

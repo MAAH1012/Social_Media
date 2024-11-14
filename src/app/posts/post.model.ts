@@ -7,6 +7,8 @@ export interface Post {
     timestamp: string;
     mediaType: string;
     winDate: string;
-    winPhotoUrl: string
+    winPhotoUrl: string;
+    mobile: string;
+    bill: number;
 }
   

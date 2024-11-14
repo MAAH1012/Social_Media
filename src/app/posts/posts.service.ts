@@ -54,4 +54,18 @@ export class PostService extends AbstractCommonService{
     debugger
     return this.http.get<Post[]>(this.fullUrl + "getwinnerposts", {headers: this.httpHeaders});
   }
+
+  getTopInstP(): Observable<Post>{
+    return this.http.get<Post>(this.fullUrl + "insttp", {headers: this.httpHeaders});
+  }
+
+  getTopSnapP(): Observable<Post>{
+    return this.http.get<Post>(this.fullUrl + "snaptp", {headers: this.httpHeaders});
+  }
+  getTopWhatP(): Observable<Post>{
+    return this.http.get<Post>(this.fullUrl + "whatstp", {headers: this.httpHeaders});
+  }
+  getTopTwitP(): Observable<Post>{
+    return this.http.get<Post>(this.fullUrl + "twittp", {headers: this.httpHeaders});
+  }
 }
